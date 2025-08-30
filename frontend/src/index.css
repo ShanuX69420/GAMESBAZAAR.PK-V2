@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded font-medium hover:bg-blue-700 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply border border-blue-600 text-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-50 transition-colors;
+  }
+  
+  .game-card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 border border-gray-200 hover:border-blue-300 cursor-pointer;
+  }
+  
+  .alphabet-letter {
+    @apply text-center py-1 text-sm font-medium cursor-pointer hover:text-blue-600 transition-colors;
+  }
+  
+  .alphabet-letter.active {
+    @apply text-blue-600;
+  }
+  
+  .alphabet-letter.inactive {
+    @apply text-gray-400;
+  }
+}
