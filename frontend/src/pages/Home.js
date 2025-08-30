@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { gamesAPI } from '../services/api';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   
   useEffect(() => {
     fetchGames();
-  }, []);
+    // Set initial search term from URL
+    const urlSearch = searchParams.get('search') || '';
+    setSearchTerm(urlSearch);
+  }, [searchParams]);
 
   const fetchGames = async () => {
     try {
@@ -52,7 +57,16 @@ const Home = () => {
                 placeholder="Search by games..."
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearchTerm(value);
+                  // Update URL with search parameter
+                  if (value) {
+                    setSearchParams({ search: value });
+                  } else {
+                    setSearchParams({});
+                  }
+                }}
               />
             </div>
           </div>
@@ -144,6 +158,8 @@ const Home = () => {
           )}
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

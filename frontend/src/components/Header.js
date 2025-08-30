@@ -32,9 +32,6 @@ const Header = () => {
           </div>
 
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/marketplace" className="text-gray-600 hover:text-blue-600 font-medium">
-              Marketplace
-            </Link>
             {user ? (
               <>
                 <Link 
@@ -83,13 +80,6 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t">
             <div className="flex flex-col space-y-2">
-              <Link 
-                to="/marketplace" 
-                className="text-gray-700 hover:text-primary-600 py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Marketplace
-              </Link>
               {user ? (
                 <>
                   <Link 
